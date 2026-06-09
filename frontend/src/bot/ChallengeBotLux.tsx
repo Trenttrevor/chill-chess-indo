@@ -287,7 +287,7 @@ const ChallengeBotLux = () => {
   const [fen, setFen] = useState(() => chessRef.current.fen());
   const [status, setStatus] = useState<GameStatus>("playing");
   const [isThinking, setIsThinking] = useState(false);
-  const [tick, setTick] = useState(0); // forces re-render after ref mutation
+  // const [tick, setTick] = useState(0); // forces re-render after ref mutation
 
   // Move history and captured pieces live in refs → never cause double-recording
   const movePairsRef = useRef<MovePair[]>([]);
@@ -295,7 +295,7 @@ const ChallengeBotLux = () => {
   const capturedWhiteRef = useRef<string[]>([]);
   const moveLogRef = useRef<HTMLDivElement>(null);
 
-  const forceUpdate = () => setTick((t) => t + 1);
+  // const forceUpdate = () => setTick((t) => t + 1);
 
   const scrollLog = () =>
     setTimeout(
@@ -342,7 +342,7 @@ const ChallengeBotLux = () => {
     setFen(game.fen());
     setIsThinking(false);
     setStatus(deriveStatus(game));
-    forceUpdate();
+    // forceUpdate();
   }, []); // chessRef is a ref — safe
 
   const { getBestMove } = useStockfish(handleBestMove);
@@ -374,7 +374,7 @@ const ChallengeBotLux = () => {
       setFen(game.fen());
       const newStatus = deriveStatus(game);
       setStatus(newStatus);
-      forceUpdate();
+      // forceUpdate();
 
       if (newStatus === "playing" || newStatus === "check") {
         setIsThinking(true);
@@ -396,7 +396,7 @@ const ChallengeBotLux = () => {
     setFen(chessRef.current.fen());
     setStatus("playing");
     setIsThinking(false);
-    forceUpdate();
+    // forceUpdate();
   };
 
   /* Undo (remove both player + engine half-moves) */
@@ -421,11 +421,11 @@ const ChallengeBotLux = () => {
     setFen(g.fen());
     setStatus(deriveStatus(g));
     setIsThinking(false);
-    forceUpdate();
+    // forceUpdate();
   };
 
   const isOver = ["won", "lost", "draw"].includes(status);
-  const game = chessRef.current;
+  // const game = chessRef.current;
   const pairs = movePairsRef.current;
 
   const statusLabel: Record<GameStatus, string> = {
