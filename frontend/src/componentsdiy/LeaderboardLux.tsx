@@ -2,104 +2,104 @@ import { useState, useEffect } from "react";
 import NavbarLux from "./NavbarLux";
 import axios from "axios";
 
-const mockData = [
-  {
-    id: 1,
-    name: "Magnus Carlsen",
-    points: 3842,
-    wins: 142,
-    losses: 18,
-    rank: "Grandmaster",
-    country: "🇳🇴",
-    avatar: "MB",
-    streak: 12,
-  },
-  {
-    id: 2,
-    name: "Chill Chess Indo",
-    points: 3711,
-    wins: 128,
-    losses: 24,
-    rank: "Grandmaster",
-    country: "🇩🇪",
-    avatar: "IV",
-    streak: 7,
-  },
-  {
-    id: 3,
-    name: "Karim El-Rashid",
-    points: 3650,
-    wins: 119,
-    losses: 29,
-    rank: "International Master",
-    country: "🇪🇬",
-    avatar: "KR",
-    streak: 4,
-  },
-  {
-    id: 4,
-    name: "Yuki Tanegawa",
-    points: 3512,
-    wins: 108,
-    losses: 34,
-    rank: "International Master",
-    country: "🇯🇵",
-    avatar: "YT",
-    streak: 9,
-  },
-  {
-    id: 5,
-    name: "Aleksei Morozov",
-    points: 3480,
-    wins: 103,
-    losses: 38,
-    rank: "FIDE Master",
-    country: "🇷🇺",
-    avatar: "AM",
-    streak: 2,
-  },
-  {
-    id: 6,
-    name: "Valentina Cruz",
-    points: 3390,
-    wins: 97,
-    losses: 41,
-    rank: "FIDE Master",
-    country: "🇧🇷",
-    avatar: "VC",
-    streak: 6,
-  },
-  {
-    id: 7,
-    name: "Theo Blackmore",
-    points: 3271,
-    wins: 89,
-    losses: 47,
-    rank: "Candidate Master",
-    country: "🇬🇧",
-    avatar: "TB",
-    streak: 0,
-  },
-  {
-    id: 8,
-    name: "Priya Nair",
-    points: 3150,
-    wins: 82,
-    losses: 52,
-    rank: "Candidate Master",
-    country: "🇮🇳",
-    avatar: "PN",
-    streak: 3,
-  },
-];
+// const mockData = [
+//   {
+//     id: 1,
+//     name: "Magnus Carlsen",
+//     points: 3842,
+//     wins: 142,
+//     losses: 18,
+//     rank: "Grandmaster",
+//     country: "🇳🇴",
+//     avatar: "MB",
+//     streak: 12,
+//   },
+//   {
+//     id: 2,
+//     name: "Chill Chess Indo",
+//     points: 3711,
+//     wins: 128,
+//     losses: 24,
+//     rank: "Grandmaster",
+//     country: "🇩🇪",
+//     avatar: "IV",
+//     streak: 7,
+//   },
+//   {
+//     id: 3,
+//     name: "Karim El-Rashid",
+//     points: 3650,
+//     wins: 119,
+//     losses: 29,
+//     rank: "International Master",
+//     country: "🇪🇬",
+//     avatar: "KR",
+//     streak: 4,
+//   },
+//   {
+//     id: 4,
+//     name: "Yuki Tanegawa",
+//     points: 3512,
+//     wins: 108,
+//     losses: 34,
+//     rank: "International Master",
+//     country: "🇯🇵",
+//     avatar: "YT",
+//     streak: 9,
+//   },
+//   {
+//     id: 5,
+//     name: "Aleksei Morozov",
+//     points: 3480,
+//     wins: 103,
+//     losses: 38,
+//     rank: "FIDE Master",
+//     country: "🇷🇺",
+//     avatar: "AM",
+//     streak: 2,
+//   },
+//   {
+//     id: 6,
+//     name: "Valentina Cruz",
+//     points: 3390,
+//     wins: 97,
+//     losses: 41,
+//     rank: "FIDE Master",
+//     country: "🇧🇷",
+//     avatar: "VC",
+//     streak: 6,
+//   },
+//   {
+//     id: 7,
+//     name: "Theo Blackmore",
+//     points: 3271,
+//     wins: 89,
+//     losses: 47,
+//     rank: "Candidate Master",
+//     country: "🇬🇧",
+//     avatar: "TB",
+//     streak: 0,
+//   },
+//   {
+//     id: 8,
+//     name: "Priya Nair",
+//     points: 3150,
+//     wins: 82,
+//     losses: 52,
+//     rank: "Candidate Master",
+//     country: "🇮🇳",
+//     avatar: "PN",
+//     streak: 3,
+//   },
+// ];
 
 const MEDAL_COLORS = ["#C9A84C", "#A8A9AD", "#C47722"];
-const RANK_COLORS: Record<string, string> = {
-  Grandmaster: "#C9A84C",
-  "International Master": "#A8A9AD",
-  "FIDE Master": "#B87333",
-  "Candidate Master": "#6B8E9F",
-};
+// const RANK_COLORS: Record<string, string> = {
+//   Grandmaster: "#C9A84C",
+//   "International Master": "#A8A9AD",
+//   "FIDE Master": "#B87333",
+//   "Candidate Master": "#6B8E9F",
+// };
 
 interface LeaderboardUser {
   id: string;
@@ -121,7 +121,7 @@ export default function LeaderboardLux() {
   }, []);
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -133,8 +133,6 @@ export default function LeaderboardLux() {
         setLeaderboard(data);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
 
