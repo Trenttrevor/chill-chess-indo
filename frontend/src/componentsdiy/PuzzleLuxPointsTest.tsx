@@ -43,8 +43,8 @@ const PuzzleLuxPointsTest = () => {
   const [playerColor, setPlayerColor] = useState<"w" | "b">("w");
   const [status, setStatus] = useState<Status>("playing");
   const [theme, setTheme] = useState<Theme>("skewer");
-  const [solvedCount, setSolvedCount] = useState(0);
-  const [wrongCount, setWrongCount] = useState(0);
+  // const [solvedCount, setSolvedCount] = useState(0);
+  // const [wrongCount, setWrongCount] = useState(0);
   const [boardVisible, setBoardVisible] = useState(false);
   // const [showGacha, setShowGacha] = useState(false);
   // const [gachaTickets, setGachaTickets] = useState(0);
@@ -108,7 +108,7 @@ const PuzzleLuxPointsTest = () => {
       setGame(newGame);
       setStatus("wrong");
       setTimeout(() => setGame(new Chess(posBeforeWrong)), 1000);
-      setWrongCount((p) => p + 1);
+      // setWrongCount((p) => p + 1);
       return true;
     }
 
@@ -135,7 +135,7 @@ const PuzzleLuxPointsTest = () => {
 
     if (currentPuzzle.moves.length === nextIndex) {
       setStatus("correct");
-      setSolvedCount((p) => p + 1);
+      // setSolvedCount((p) => p + 1);
       void rewardUser();
       return true;
     }

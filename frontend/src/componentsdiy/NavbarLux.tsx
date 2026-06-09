@@ -15,7 +15,7 @@ const NavbarLux = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { user, isSignedIn } = useUser();
+  const { user } = useUser();
 
   const getNavFromPath = (pathname: string): NavName => {
     if (pathname.includes("puzzle")) return "Puzzle";
