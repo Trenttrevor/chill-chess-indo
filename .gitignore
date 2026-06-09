@@ -1,8 +1,9 @@
-node_modules
+node_modules/
 .env
-dist
-build
-coverage
-.vite
-frontend/.env
-backend/.env
+.env.*
+dist/
+build/
+coverage/
+.vite/
+.vercel/
+.DS_Store
