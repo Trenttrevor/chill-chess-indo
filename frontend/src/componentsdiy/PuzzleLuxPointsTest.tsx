@@ -4,9 +4,6 @@ import { Chess } from "chess.js";
 import type { PieceDropHandlerArgs } from "react-chessboard";
 import puzzlesData from "@/data/puzzle_1900.json";
 import NavbarLux from "./NavbarLux";
-import axios from "axios";
-import { useAuth } from "@clerk/react";
-// import { GachaModal } from "./GachaReveal.tsx";
 
 type Puzzles = {
   id: string;
@@ -35,8 +32,6 @@ const pieceNames: Record<string, string> = {
 };
 
 const PuzzleLuxPointsTest = () => {
-  const { getToken } = useAuth();
-
   const [game, setGame] = useState<Chess>(new Chess());
   const [puzzleIndex, setPuzzleIndex] = useState<number>(0);
   const [moveIndex, setMoveIndex] = useState(0);
@@ -117,26 +112,9 @@ const PuzzleLuxPointsTest = () => {
     setMoveIndex(nextIndex);
     setGame(newGame);
 
-    const rewardUser = async () => {
-      try {
-        const token = await getToken();
-        const res = await axios.post(
-          "http://localhost:3000/api/users/points",
-          { points: 1 },
-          { headers: { Authorization: `Bearer ${token}` } },
-        );
-        // setGachaTickets((t) => t + 1);
-        // setShowGacha(true);
-        console.log(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     if (currentPuzzle.moves.length === nextIndex) {
       setStatus("correct");
       // setSolvedCount((p) => p + 1);
-      void rewardUser();
       return true;
     }
 

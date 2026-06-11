@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { UserButton, useUser } from "@clerk/react";
-
 type NavName = "Puzzle" | "Challenge BOT" | "Leaderboard";
 
 const nav_links: { navName: NavName; navURL: string }[] = [
@@ -14,8 +12,6 @@ const nav_links: { navName: NavName; navURL: string }[] = [
 const NavbarLux = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const { user } = useUser();
 
   const getNavFromPath = (pathname: string): NavName => {
     if (pathname.includes("puzzle")) return "Puzzle";
@@ -170,17 +166,6 @@ const NavbarLux = () => {
             ))}
           </ul>
         </nav>
-
-        {/* User slot — swap the Guest block for your auth user when ready */}
-        <div className="plx-user-slot">
-          <span className="plx-user-guest">
-            <span className="plx-user-guest-dot" />
-            {user?.firstName}{" "}
-            <span>
-              <UserButton />
-            </span>
-          </span>
-        </div>
       </header>
     </>
   );

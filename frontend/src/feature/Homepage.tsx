@@ -1,4 +1,3 @@
-import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/react";
 import { useState, useEffect } from "react";
 import type { CSSProperties, ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
@@ -62,10 +61,9 @@ function FloatingPiece({ piece, style }: FloatingPieceProps): ReactElement {
   );
 }
 
-export default function ChillChessIndo(): ReactElement {
+export default function Homepage(): ReactElement {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const { isSignedIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -164,8 +162,7 @@ export default function ChillChessIndo(): ReactElement {
         .navbar {
           position: fixed; top: 0; left: 0; right: 0; z-index: 100;
           display: flex; align-items: center; justify-content: space-between;
-          padding: 0 2.5rem;
-          height: 72px;
+          padding: 0 2.5rem; height: 72px;
           transition: all 0.4s ease;
           border-bottom: 1px solid transparent;
         }
@@ -178,8 +175,7 @@ export default function ChillChessIndo(): ReactElement {
           display: flex; align-items: center; gap: 0.6rem;
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.5rem; font-weight: 700;
-          color: var(--gold-light);
-          letter-spacing: 0.02em;
+          color: var(--gold-light); letter-spacing: 0.02em;
           text-decoration: none;
         }
         .logo-icon { font-size: 1.8rem; }
@@ -187,32 +183,12 @@ export default function ChillChessIndo(): ReactElement {
 
         .nav-actions { display: flex; gap: 0.75rem; align-items: center; }
 
-        .btn-outline {
-          padding: 0.5rem 1.3rem;
-          border: 1px solid var(--border);
-          background: transparent;
-          color: var(--gold-light);
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.84rem;
-          letter-spacing: 0.06em;
-          cursor: pointer;
-          border-radius: 4px;
-          transition: all 0.25s;
-        }
-        .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
-
         .btn-gold {
           padding: 0.5rem 1.4rem;
           background: linear-gradient(135deg, var(--gold) 0%, #a8782a 100%);
-          color: #0a0a0c;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.84rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          cursor: pointer;
-          border: none;
-          border-radius: 4px;
-          transition: all 0.25s;
+          color: #0a0a0c; font-family: 'DM Sans', sans-serif;
+          font-size: 0.84rem; font-weight: 600; letter-spacing: 0.06em;
+          cursor: pointer; border: none; border-radius: 4px; transition: all 0.25s;
         }
         .btn-gold:hover { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,168,76,0.25); }
 
@@ -293,11 +269,6 @@ export default function ChillChessIndo(): ReactElement {
           color: #0a0a0c; border: none; font-weight: 700;
         }
         .btn-hero-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.3); background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
-        .btn-hero-ghost {
-          background: transparent; color: var(--gold-light);
-          border: 1px solid var(--border); font-weight: 400;
-        }
-        .btn-hero-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }
           to { opacity: 1; transform: translateY(0); }
@@ -391,39 +362,15 @@ export default function ChillChessIndo(): ReactElement {
             ✕
           </button>
           <div className="mobile-menu-actions">
-            {isSignedIn ? (
-              <>
-                <button
-                  className="btn-gold btn-hero"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    navigate("/puzzle");
-                  }}
-                >
-                  ▶ Play Puzzle
-                </button>
-                <UserButton />
-              </>
-            ) : (
-              <>
-                <SignInButton mode="modal" forceRedirectUrl="/puzzle">
-                  <button
-                    className="btn-outline btn-hero"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Sign In
-                  </button>
-                </SignInButton>
-                <SignUpButton mode="modal" forceRedirectUrl="/puzzle">
-                  <button
-                    className="btn-gold btn-hero"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Sign Up Free
-                  </button>
-                </SignUpButton>
-              </>
-            )}
+            <button
+              className="btn-gold btn-hero"
+              onClick={() => {
+                setMenuOpen(false);
+                navigate("/puzzle");
+              }}
+            >
+              ▶ Play Now
+            </button>
           </div>
         </div>
       )}
@@ -437,27 +384,11 @@ export default function ChillChessIndo(): ReactElement {
             <span className="logo-sub">Play · Learn · Rise</span>
           </span>
         </a>
-
         <div className="nav-actions">
-          {isSignedIn ? (
-            <>
-              <button className="btn-gold" onClick={() => navigate("/puzzle")}>
-                ▶ Push Rank
-              </button>
-              <UserButton />
-            </>
-          ) : (
-            <>
-              <SignInButton mode="modal" forceRedirectUrl="/puzzle">
-                <button className="btn-outline">Sign In</button>
-              </SignInButton>
-              <SignUpButton mode="modal" forceRedirectUrl="/puzzle">
-                <button className="btn-gold">Sign Up Free</button>
-              </SignUpButton>
-            </>
-          )}
+          <button className="btn-gold" onClick={() => navigate("/puzzle")}>
+            ▶ Play Now
+          </button>
         </div>
-
         <button className="hamburger" onClick={() => setMenuOpen(true)}>
           <span />
           <span />
@@ -488,25 +419,14 @@ export default function ChillChessIndo(): ReactElement {
             Bergabunglah dengan 8000+ pemain Indonesia dan Internasional. Magnus
             pernah main disini.
           </p>
-          {!isSignedIn && (
-            <div className="hero-cta">
-              <SignUpButton mode="modal" forceRedirectUrl="/puzzle">
-                <button className="btn-hero btn-hero-gold">
-                  Mulai Bermain Gratis
-                </button>
-              </SignUpButton>
-            </div>
-          )}
-          {isSignedIn && (
-            <div className="hero-cta">
-              <button
-                className="btn-hero btn-hero-gold"
-                onClick={() => navigate("/puzzle")}
-              >
-                ▶ Lanjut Bermain
-              </button>
-            </div>
-          )}
+          <div className="hero-cta">
+            <button
+              className="btn-hero btn-hero-gold"
+              onClick={() => navigate("/puzzle")}
+            >
+              Mulai Bermain Sekarang
+            </button>
+          </div>
         </div>
       </section>
 
@@ -550,25 +470,13 @@ export default function ChillChessIndo(): ReactElement {
             Dari pembukaan klasik hingga endgame yang intens — Chill Chess Indo
             hadir dengan komunitas yang hangat untuk tumbuh bersama.
           </p>
-          {!isSignedIn && (
-            <SignUpButton mode="modal" forceRedirectUrl="/puzzle">
-              <button
-                className="btn-hero btn-hero-gold"
-                style={{ padding: "0.8rem 2rem" }}
-              >
-                Buat Akun Sekarang
-              </button>
-            </SignUpButton>
-          )}
-          {isSignedIn && (
-            <button
-              className="btn-hero btn-hero-gold"
-              style={{ padding: "0.8rem 2rem" }}
-              onClick={() => navigate("/puzzle")}
-            >
-              ▶ Lanjut Bermain
-            </button>
-          )}
+          <button
+            className="btn-hero btn-hero-gold"
+            style={{ padding: "0.8rem 2rem" }}
+            onClick={() => navigate("/puzzle")}
+          >
+            ▶ Mulai Bermain
+          </button>
         </div>
       </section>
 
@@ -581,31 +489,15 @@ export default function ChillChessIndo(): ReactElement {
             <br />
             Raja Papan Catur?
           </h2>
-          <p>Gratis selamanya. Daftar dalam 30 detik.</p>
-          {!isSignedIn && (
-            <div className="hero-cta">
-              <SignUpButton mode="modal" forceRedirectUrl="/puzzle">
-                <button className="btn-hero btn-hero-gold">
-                  Daftar Gratis Sekarang
-                </button>
-              </SignUpButton>
-              <SignInButton mode="modal" forceRedirectUrl="/puzzle">
-                <button className="btn-hero btn-hero-ghost">
-                  Sudah punya akun? Masuk
-                </button>
-              </SignInButton>
-            </div>
-          )}
-          {isSignedIn && (
-            <div className="hero-cta">
-              <button
-                className="btn-hero btn-hero-gold"
-                onClick={() => navigate("/puzzle")}
-              >
-                ▶ Lanjut Bermain
-              </button>
-            </div>
-          )}
+          <p>Gratis selamanya. Langsung main tanpa daftar.</p>
+          <div className="hero-cta">
+            <button
+              className="btn-hero btn-hero-gold"
+              onClick={() => navigate("/puzzle")}
+            >
+              Mulai Bermain Sekarang
+            </button>
+          </div>
         </div>
       </section>
 
